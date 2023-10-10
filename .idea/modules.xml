@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/electric-datomic-react.iml" filepath="$PROJECT_DIR$/electric-datomic-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/electric-datomic-react-template.iml" filepath="$PROJECT_DIR$/electric-datomic-react-template.iml" />
     </modules>
   </component>
 </project>

@@ -1,3 +1,56 @@
+# electric-datomic-reagent-template
+
+A ClojureScript starter that combines Hyperfiddle Electric, Datomic Local and Reagent/React in one app.
+
+## What it is
+
+A template project: a Hyperfiddle Electric (v2-alpha) app served by Jetty, with a Datomic `dev-local` database, Reagent and React components (Slate editor, data table, charts) rendered inside Electric, built by shadow-cljs. It includes two demo pages (signup and login) and the Electric todo-list demo.
+
+## Why it exists
+
+Per the commit history (October 2023) and `logs.md` (debug notes, in Turkish), it was built to learn how to connect Electric, Datomic and React/Reagent, and to document the setup steps (see the original setup notes below). `poms-prototype-app-02` uses the same stack and carries the same documentation files.
+
+## Contents
+
+| Path | What it is |
+| --- | --- |
+| `src/app/` | Demo namespaces: `poms_00_signup_20230831.cljc`, `poms_01_login_20230828.cljc`, `todo_list.cljc`, `demo_index.cljc`, Electric server entry points for Java 8/Jetty 9 and Java 11/Jetty 10 |
+| `src/user.clj`, `src/user.cljs`, `src/user_main.cljc`, `src/prod.clj` | Dev and production entry points |
+| `src-build/build.clj` | tools.build script (`:build` alias) |
+| `resources/` | Static assets, compiled JS, and a small `poms-db` Datomic dev-local data folder |
+| `deps.edn`, `shadow-cljs.edn` | Clojure deps and the shadow-cljs build (nREPL on port 9001) |
+| `package.json`, `package-lock.json` | npm deps: React 18, Slate, react-data-table-component, recharts |
+| `Dockerfile`, `fly.toml`, `.dockerignore` | Container and Fly.io deploy config (app name `electric-starter-app`) |
+| `logs.md` | Debug log kept while connecting Datomic and Electric |
+| `img.png`, `img_1.png`, `data_modeling.png`, `readme-electric-error-reporting-proof.png` | Images used in the notes |
+| `out/`, `.shadow-cljs/`, `node_modules/`, `.idea/`, `*.iml`, `.nrepl-port` | Build output, caches and IDE files that were committed to the repo |
+
+## How to run
+
+Prerequisites: JDK, Clojure CLI, Node.js. Datomic `dev-local` needs a storage directory configured (see the "POMS Demo project CONFIG" section below; point `:storage-dir` at the `poms-db` folder on your machine).
+
+```bash
+npm install
+clj -A:dev -X user/main      # starts shadow-cljs and the Electric server
+# app at http://localhost:8080, shadow-cljs UI at http://localhost:9630
+```
+
+## Tech stack
+
+Clojure 1.11, ClojureScript 1.11, Hyperfiddle Electric v2-alpha, Reagent 1.2, React 18, Slate, Datomic `dev-local`, shadow-cljs, Jetty, Docker, Fly.io.
+
+## Status
+
+Archived template. Last commit 2023-10-10.
+
+## Related repos
+
+`poms-prototype-app-02` (same stack and documentation files, many more pages).
+
+---
+
+## Original setup notes
+
 # React-Reagent setup and config
 
 Let's add npm/package.json file into project.
